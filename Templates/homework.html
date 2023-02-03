@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+
+{% block head %}
+: Homework
+{% endblock %}
+
+{% block main %}
+<div>
+    <div>
+        <form action="/homework" method="post">
+            <input name="homework-title" id="homework-title" type="text" placeholder="Type homework here" autocomplete="off" autofocus>
+            <input name="class" id="class" type="text" placeholder="Type class here" autocomplete="off">
+            <input name="date" id="date" type="date" value="Due Date">
+            <input type="submit" value="Create New Homework">
+        </form>
+    </div>
+    <div>
+        <!--display of current chores-->
+        <table>
+            <tr>
+                <td class="task">Homework</td>
+                <td>Class</td>
+                <td class="date">Date</td>
+                <td class="complete"></td>
+            </tr>
+            {% for hw in list %}
+            <tr>
+                <td>
+                    {{hw[1]}}
+                </td>
+                <td>
+                    {{hw[2]}}
+                </td>
+                <td>
+                    {{hw[3]}}
+                </td>
+                <td>
+                    <form action="/deleteHw" method="post">
+                        <input name="hw" type="hidden" value="{{hw[0]}}">
+                        <input type="submit" value="Complete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

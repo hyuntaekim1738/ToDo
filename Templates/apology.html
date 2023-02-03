@@ -1,0 +1,11 @@
+{% extends "index.html" %}
+
+{% block head %}
+: Error
+{% endblock %}
+
+{% block main %} 
+<div class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
+{% endblock %}

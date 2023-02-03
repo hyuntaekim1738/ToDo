@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+
+{% block head %}
+: Chores
+{% endblock %}
+
+{% block main %}
+<div>
+    <div>
+        <form action="/chores" method="post">
+            <input name="chore-title" id="chore-title" type="text" placeholder="Type chore here" autocomplete="off" autofocus>
+            <input name="date" id="date" type="date" value="Do by: ">
+            <input type="submit" value="Create New Chore">
+        </form>
+    </div>
+    <div>
+        <!--display of current chores-->
+        <table>
+            <tr>
+                <td class="task">Chore</td>
+                <td class="date">Date</td>
+                <td class="complete"></td>
+            </tr>
+            {% for task in list %}
+            <tr>
+                <td>
+                    {{task[1]}}
+                </td>
+                <td>
+                    {{task[2]}}
+                </td>
+                <td>
+                    <form action="/delete" method="post">
+                        <input name="chore" type="hidden" value="{{task[0]}}">
+                        <input type="submit" value="Complete">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
